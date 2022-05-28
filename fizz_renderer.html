@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FizzTrack</title>
+        <meta name='viewport' content="width=device-width, initial-scale=1.0">
+        <link rel='stylesheet' href='icons/css/all.css'>
+        <link rel='icon' href='logo.ico'>
+        <style>
+            body{
+                background-image: black;
+                overflow:hidden;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            *{
+                margin: 0px;
+                box-sizing: border-box;
+            }
+          .title_bar{
+              display:flex;
+              flex-wrap: nowrap;
+              width:100%;
+              height:6vh;
+              padding-top:1vh;
+              justify-content: center;
+              margin: auto;
+              overflow: hidden;
+              position: relative;
+              top:25px;
+              /* left:50%; */
+              /* transform:translate(-50%,0px); */
+              z-index: 1;
+              background-image: url('fizzy.jpg');
+              border:1px solid black;
+              transition:height 0.4s;
+              user-select: none;
+          }
+          #explore{
+              border-radius: 100px;
+              margin-left: 20px;
+              margin-right: 20px;
+              width: 100px;
+              height:4vh;
+              overflow: hidden;
+              text-align: center;
+              background-color: rgb(232, 240, 236);
+              line-height: 4vh;
+              cursor: pointer;
+              user-select: none;
+              background:#00fffc;
+              user-select: none;
+          }
+          #drive_select{
+            border-radius: 200px;
+            margin-left: 20px;
+            width:300px;
+            height:4vh;
+            background-color: rgb(232, 240, 236);
+            outline:none;
+            cursor: pointer;
+            background:#00fffc;
+            user-select: none;
+          }
+
+          @media screen and (max-width:900px) {
+              .title_bar{
+                  justify-content: center;
+                  width:100%;
+              }
+              #drive_select{
+                  width:40%;
+              }
+              #explore{
+                  width:20%;
+              }
+              .fa-play{
+                  width:20%;
+                  font-size: 10vw;
+              }
+              #video_player{
+                  height:50vh;
+              }
+          }
+
+          #package{
+              background-color: rgb(231, 241, 240);
+              overflow:auto;
+              scroll-behavior: smooth;
+              width: 100%;
+              user-select: none;
+              transition: 0.4s;
+              margin-top:5px;
+          }
+          #multi_bucket2{
+              transition:width 0.4s;
+              user-select: none;
+              margin-top:5px;
+
+          }
+
+          #play_art{
+            height:50vh;
+            text-align: center;
+            padding:0px;
+            background-color: rgb(7, 0, 0);
+            background-position: bottom;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            filter:blur(8px);
+            width:100%;
+            padding-top:0.5%;
+            z-index: 0;
+            transition:height 0.2s;
+          }
+          #play_bar{
+              position: -webkit-sticky;
+              position:sticky;
+              bottom:0;
+            height:50px;
+            width:100%;
+            display:flex;
+            overflow: hidden;
+            background-image: url('fizzy.jpg');
+            transition:height 0.4s;
+            user-select: none;
+            border:2px solid black;
+          }
+          #concentric{
+              position: sticky;
+              bottom:-135px;
+              left:50%;
+              transform: translate(-50%,-80%);
+              border-radius: 200px;
+              margin:auto;
+              width:250px;
+              height:250px;
+              overflow: hidden;
+              background-color: aliceblue;
+              transition: 0.4s;
+              user-select: none;
+                }
+                .fa-arrow-left,.fa-arrows-alt,.fa-window-restore,.fa-expand,.fa-compress,.fa-volume-up,.fa-volume-off,.fa-play,.fa-pause,.fa-stop,.fa-window-restore,.fa-step-backward,.fa-step-forward{
+                    color:#00fffc;
+                    cursor: pointer;
+
+                }
+                #duration::-webkit-slider-runnable-track,#volume::-webkit-slider-runnable-track{
+                    -webkit-appearance: none;
+                    width:100%;
+                    outline: none;
+                   background:#00fffc;
+                   border-radius: 5px;
+                   cursor: pointer;
+                }
+                ::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+ background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: #555;
+}
+
+
+.title {
+    width:100%;
+    height:25px;
+    padding: 3px;
+    background-color: black;
+    -webkit-user-select: none;
+    -webkit-app-region: drag;
+    position: absolute;
+    top:0px;
+    z-index: 2;
+}
+/* scaling and alignment of minimize and close buttons */
+.fa-window-minimize, .fa-times{
+  width:40px;
+  font-size:25px;
+  float:right;
+  -webkit-app-region: none;
+  color:white;
+}
+
+.fa-window-maximize{
+  font-size: 20px;
+  width:40px;
+  float:right;
+  color:white;
+  text-align: center;
+    height:22px;
+  transition:0.4s;
+  -webkit-app-region: none;
+}
+.fa-window-minimize{
+  display:inline-block; /*mandatory to push vertically*/
+  margin-top: -10px;
+  text-align: center;
+  height:32px;
+  transition:0.4s;
+  -webkit-app-region: none;
+}
+.fa-times{
+  display:inline-block;
+  margin-top:-4px;
+  text-align: center;
+  height:26px;
+  transition:0.4s;
+}
+.fa-window-minimize:hover,.fa-window-maximize:hover,.fa-times:hover{
+  background-color: #ff0000;
+}
+        </style>
+    </head>
+    <body>
+        <header class='title'>
+        <img src='logo.ico' alt='not found' style='display:inline-block;margin-top:-1px;float:left;width:20px;' >
+        <span class='heading' style='color:white;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FizzTrack</span>
+            <i class='fas fa-times'></i>
+            <i class='fas fa-window-maximize'></i>
+            <i class='fas fa-window-maximize' style='display:none;color:yellow;'></i>
+            <i class='fas fa-window-minimize'></i>
+
+        </header>
+
+        <!-- addition of title bar -->
+        <div class='title_bar'>
+            <i class='fa fa-arrow-left mouse' style='font-size: 26px;margin:0.32vh;'></i>
+            <select id='drive_select'>
+            </select>
+            <span id='explore' class='mouse'>EXPLORE</span>
+            <i class='fa fa-arrows-alt mouse' style='font-size: 30px;margin-left: 10px;transform: rotate(45deg);'></i>
+            <i class='fa fa-window-restore mouse' style='font-size: 20px;margin-left: 3px;margin-top:-5px;display:none;'></i>
+        </div>
+        <!-- addition of media bucket -->
+        <div style='display:flex;flex-direction: row;height: 50vh;width: 100%;' id='package11'>
+        <div id='package'>
+
+        </div>
+        <div style='background-color: rgb(231, 241, 240);height:50vh;overflow:auto;width:0%;padding-top: 6vh;' id='multi_bucket2'>
+        <table id='multi_bucket' style='background-color: rgb(231, 241, 240);margin: auto;'>
+          <tr style="border: solid;margin: auto;"><th>TITLE</th></tr>
+        </table>
+        </div>
+        </div>
+
+        <div id='play_art'>
+            <video style='display:none;' id='video_player'>
+                <source id='video_source' src='' type='video/mp4'>
+            </video>
+        </div>
+        <img src='#' style='display:none;visibility:hidden;width:0px;position:absolute;top:-100px' id='equalizer'>
+        <div id='concentric' >
+            <img src='fizz_default.png' alt='the image is here' style='width:100%;position:absolute;top:50%;left:50%;transform: translate(-50%,-50%);' id='concentric_pic'>
+        </div>
+        <span id='current_time' style='position:absolute;top:90%;left:5%;transform: translate(-50%,-50%);background-color: black;color:white'></span>
+            <span id='period' style='float:right;position:absolute;top:90%;left:95%;transform: translate(-50%,-50%);background-color: black;color:white;'></span>
+
+        <footer id='play_bar'>
+            <img src='fizz_default.png' alt='the image is here' style='border-radius: 150px;width:40px;height:40px;margin:4px 5% 4px 4%' id='mini_pic'>
+            <i class='fa fa-stop mouse' style='width:45px;font-size:35px;margin:4px 2% -2px 2%;'></i>
+            <i class='fa fa-step-backward mouse' style='width:45px;font-size:35px;margin:4px 0% -2px 0px;display:none;'></i>
+            <i class='fa fa-step-forward mouse' style='width:45px;font-size:35px;margin:4px 0px -2px 2px;display:none;'></i>
+            <i class='fa fa-pause  mouse' style='display:none;width:45px;font-size:35px;margin:4px 2% -2px 2%;'></i>
+            <i class='fa fa-play  mouse' style='width:45px;font-size:35px;margin:4px 2% -2px 2%;'></i>
+            <input type='range' id='duration' name='duration' style='width:600px;margin:4px 2% -2px 2%;outline:none;border:none;' min="0">
+            <i class='fa fa-volume-up' style='width:45px;font-size:35px;margin:4px 0% -2px 3%;'></i>
+            <i class='fa fa-volume-off' style='width:45px;font-size:35px;margin:4px 0% -2px 1%;display:none;'></i>
+            <input type='range' name='volume' id='volume' style='width:19vw;font-size:35px;margin:2px 2% -2px 1%;outline:none;border:none;' min='0' max='100' >
+            <i class='fa fa-compress mouse' style='width:45px;font-size:35px;margin:4px 0% -2px 10%;'></i>
+            <i class='fa fa-expand mouse' style='width:45px;font-size:35px;margin:4px 2% -2px 2%;'></i>
+        </footer>
+        <script src="fizzer.js"></script>
+    </body>
+</html>

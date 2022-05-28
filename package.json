@@ -1,0 +1,26 @@
+{
+  "name": "fizztrack",
+  "version": "1.0.0",
+  "description": "music and video player",
+  "main": "fizz_main.js",
+  "dependencies": {
+    "electron": "^10.1.5",
+    "mime-types": "^2.1.27"
+  },
+  "devDependencies": {
+    "electron-packager": "^15.1.0",
+    "jsmediatags": "^3.9.3"
+  },
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pack": "electron-packager . FizzTrack --platform=win32 --overwrite  --arch=ia32 --icon=logo.ico"
+  },
+  "keywords": [
+    "fizztrack",
+    "music",
+    "video"
+  ],
+  "author": "nikhil kalburgi",
+  "license": "ISC"
+}
