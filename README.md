@@ -7,7 +7,7 @@ A Music / Video Player made using ELECTRON.js that is capable of playing web sup
 ### Running The App
 
 ```
-npm run start
+npm start
 ```
 
 ### Packaging for win32 platform 
@@ -17,4 +17,4 @@ npm run pack
 ```
 #### Note
 1.  "npm run pack": "electron-packager . FizzTrack --platform=win32 --overwrite  --arch=ia32 --icon=logo.ico"
-2.  "start": "electron ."
+2.  "npm start": "electron ."
